@@ -1,0 +1,113 @@
+import turtle
+
+s = turtle.getscreen()
+turtle.bgcolor('black')
+s.setup(width=750, height=700)
+left_t = turtle.Turtle()
+left_t.goto(340, 35)
+left_t.pen(fillcolor='white', speed=5, pencolor='black')
+left_t.penup()
+left_t.shape("square")
+left_t.shapesize(stretch_wid=6, stretch_len=1)
+# print(left_t.position())
+
+
+right_t = turtle.Turtle()
+right_t.goto(-340, 35)
+right_t.pen(fillcolor='white', speed=5, pencolor='black')
+right_t.penup()
+right_t.shape("square")
+right_t.shapesize(stretch_wid=6, stretch_len=1)
+
+circle_t = turtle.Turtle()
+circle_t.pen(fillcolor='white', speed=5, pencolor='white')
+circle_t.penup()
+circle_t.shape('circle')
+circle_t.speed(5)
+circle_t.dx = 5
+circle_t.dy = -5
+
+left_s = 0
+right_s = 0
+
+
+score = turtle.Turtle()
+score.penup()
+score.goto(0, 300)
+score.hideturtle()
+score.color('white')
+score.speed(0)
+score.write("{}   {}".format(left_s, right_s), align='center', font=40)
+
+def moveaup():
+    if(right_t.ycor()>=240):
+        return
+    else:
+        right_t.sety(right_t.ycor()+20)
+
+def moveadown():
+    
+    if(right_t.ycor()<=-240):
+        return
+    else:
+        right_t.sety(right_t.ycor()-20)
+
+def movebup():
+    if(left_t.ycor()>=240):
+        return
+    else:
+        left_t.sety(left_t.ycor()+20)
+
+def movebdown():
+    # print("paddle", left_t.ycor())
+    if(left_t.ycor()<=-240):
+        return
+    else:
+        left_t.sety(left_t.ycor()-20)
+
+s.onkeypress(moveaup, 'w')
+s.onkeypress(moveadown, 'z')
+s.onkeypress(movebup, 'i')
+s.onkeypress(movebdown, 'm')
+s.listen()
+
+while True:
+    s.update()
+    circle_t.setx(circle_t.xcor()+circle_t.dx)
+    circle_t.sety(circle_t.ycor()+circle_t.dy)
+    if circle_t.xcor()>=350:
+        circle_t.color('black')
+        circle_t.goto(0, 0)
+        circle_t.color('white')
+        left_s += 1
+        circle_t.dy *= -1
+        score.clear()
+        score.write("{}   {}".format(left_s, right_s), align='center', font=40)
+
+    if circle_t.xcor()<=-350:
+        circle_t.color('black')
+        circle_t.goto(0, 0)
+        circle_t.color('white')
+        right_s += 1
+        circle_t.dy *= -1
+        score.clear()
+        score.write("{}   {}".format(left_s, right_s), align='center', font=40)
+
+    if circle_t.ycor() > 280: 
+        circle_t.sety(280) 
+        circle_t.dy *= -1
+  
+    if circle_t.ycor() < -280: 
+        circle_t.sety(-280) 
+        circle_t.dy *= -1
+
+    if (circle_t.xcor() > 330 and circle_t.xcor() < 340) and (circle_t.ycor() < left_t.ycor()+40 and circle_t.ycor() > left_t.ycor()-40): 
+        circle_t.setx(330) 
+        circle_t.dx*=-1
+         
+    if (circle_t.xcor()<-330 and circle_t.xcor()>-340) and (circle_t.ycor()<right_t.ycor()+40 and circle_t.ycor()>right_t.ycor()-40):
+        circle_t.setx(-330) 
+        circle_t.dx*=-1
+    
+    
+    
