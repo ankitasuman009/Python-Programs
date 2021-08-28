@@ -1,0 +1,5 @@
+Original
+Grayscale
+Brightness
+Contrast
+Saturation
