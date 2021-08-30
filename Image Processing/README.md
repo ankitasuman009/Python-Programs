@@ -8,4 +8,4 @@ Contrast ![image](https://user-images.githubusercontent.com/55661555/131228562-d
 
 Saturation ![image](https://user-images.githubusercontent.com/55661555/131228583-b68bb422-10e9-44b2-a65b-f47f1ca48cee.png)
 
-Pro tip: Don't run one function just after other. Run them individual with original image.
+Pro tip: Don't run one function just after another. Run them individually with original image.
